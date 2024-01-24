@@ -1,5 +1,6 @@
 {
     //faz vscodee aceitar coisas coloridas
     "terminal.integrated.defaultProfile.windows": "Command Prompt",
-    "java.configuration.updateBuildConfiguration": "interactive"
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "java.compile.nullAnalysis.mode": "automatic"
 }
