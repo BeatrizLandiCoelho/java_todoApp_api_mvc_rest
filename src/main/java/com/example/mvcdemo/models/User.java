@@ -1,0 +1,79 @@
+package com.example.mvcdemo.models;
+
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+//avisa pro vscode que iso sera tartado como uma tabela
+@Entity
+@Table(name="user")
+public class User {
+
+    public interface CreateUser {}
+    public interface UpdateUser {}
+    //criando atribbitos
+
+    //Integer nao e primitivo entao nao tem chance de dar erro
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id", unique = true)
+    private Long id;
+
+    @Column(name = "username", length = 100, nullable = false, unique=true)
+    @NotNull(groups=CreateUser.class)
+    @NotEmpty(groups = CreateUser.class)
+    @Size(min=2,max = 100 )
+    private String username;
+
+    @Column(name="password", length = 60, nullable = false)
+    @NotNull(groups= {CreateUser.class, UpdateUser.class})
+    @NotEmpty(groups = {CreateUser.class, UpdateUser.class} )
+    @Size(min=8, max=60)
+    private String password;
+
+    //private List<Task> task 
+
+    //construtor vazio
+    public User(){
+
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public User(Long id, String username, String password){
+        
+        this.username = username;
+        this.id=id;
+        this.password=password;
+    }
+
+
+}
