@@ -52,7 +52,7 @@ public class UserService {
 
         return this.userRepository.save(newObj);
 
-    }
+    } 
 
     public void delete(Long id){
 
