@@ -15,7 +15,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
-//avisa pro vscode que iso sera tartado como uma tabela
+//@Entity avisa pro spring que iso sera tartado como uma tabela
 @Entity
 @Table(name="user")
 public class User {
@@ -24,7 +24,7 @@ public class User {
     public interface UpdateUser {}
     //criando atribbitos
 
-    //Integer nao e primitivo entao nao tem chance de dar erro
+    //DICA : use Integer ao invez de intm Integer não é primitivo entao nao tem chance de dar erro
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id", unique = true)
@@ -42,6 +42,7 @@ public class User {
     @Size(min=8, max=60)
     private String password;
 
+    // Relacionamento um-para-muitos com a entidade Task
     @OneToMany(mappedBy = "user")
     private List<Task> tasks = new ArrayList<Task>(); 
 
